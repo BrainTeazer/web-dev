@@ -7,41 +7,48 @@
         <title> Google </title>
         <link rel="icon" href="images/google_icon.png">
         <link href="styles/style.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
     </head>
 <!---->
-
-<div class="searchlogo">
-    <img class="logo" src="images/google_logo.png" alt="google logo">
-
-    <div class="searchbar">
-        <form action="https://www.google.com/search" target="_blank">
-            <input type="text" name="q" id="searchbox"> <br>
-            <div class="search">
-                <button type="submit" class="searchbutton"> Google Search </button>
-                <button type="submit" class="searchbutton"> I'm Feeling Lucky </button>
+    <main>
+        <body>
+            <div class="searchbar">
+                <img class="logo" src="images/google_logo.png" alt="Google" class="logo">
+                <form action="https://www.google.com/search" target="_blank">
+                    
+                    <div class="inputCont">
+                        <span class="material-icons icon">search</span>
+                        <input type="text" name="q" id="searchbox"> <br>
+                    </div>
+                        <div class="search">
+                            <button type="submit" class="searchbutton"> Google Search </button>
+                            <button type="submit" class="searchbutton"> I'm Feeling Lucky </button>
+                        </div>
+                </form>
             </div>
-        </form>
-    </div>
-</div>
-    <footer>
-        <div class="left">
-            <a href="https://about.google/" target="_blank" id="bottom"> About</a>
-            <a href="https://ads.google.com/" target="_blank" id="bottom"> Advertising</a>
-            <a href="https://www.google.com/services/" target="_blank" id="bottom" > Business</a>
-            <a href="https://www.google.com/search/howsearchworks/" target="_blank" id="bottom"> How Search works</a>           
-        </div>
-        <div class="right">
-            <a href="https://policies.google.com/privacy" target="_blank" id="bottom"> Privacy</a>
-            <a href="https://policies.google.com/terms" target="_blank" id="bottom"> Terms</a>
-            <a href="" target="_blank" id="bottom"> Settings</a>
-        </div>
-    </footer>
 
-    <div class="top">
-        <a href="https://mail.google.com" target="_blank" id="top"> Gmail</a> &nbsp;
-        <a href="https://www.google.com.np/imghp?hl=en&ogbl" target="_blank" id="top"> Images</a>
-        <a href="https://accounts.google.com/" target="_blank" id="signin"> Sign In</a>
-    </div>
+            <footer>
+                <div class="left">
+                    <a href="https://about.google/" target="_blank" id="bottom"> About</a>
+                    <a href="https://ads.google.com/" target="_blank" id="bottom"> Advertising</a>
+                    <a href="https://www.google.com/services/" target="_blank" id="bottom" > Business</a>
+                    <a href="https://www.google.com/search/howsearchworks/" target="_blank" id="bottom"> How Search works</a>           
+                </div>
+                <div class="right">
+                    <a href="https://policies.google.com/privacy" target="_blank" id="bottom"> Privacy</a>
+                    <a href="https://policies.google.com/terms" target="_blank" id="bottom"> Terms</a>
+                    <a href="" target="_blank" id="bottom"> Settings</a>
+                </div>
+            </footer>
+
+            <div class="top">
+                <a href="https://mail.google.com" target="_blank" id="top"> Gmail</a> &nbsp;
+                <a href="https://www.google.com.np/imghp?hl=en&ogbl" target="_blank" id="top"> Images</a>
+                <a href=""> <span class="material-icons icon">apps</span> </a>
+                <a href="https://accounts.google.com/" target="_blank" id="signin"> Sign In</a>
+            </div>
 
             <script src="scripts/main.js"></script>
         </body>
