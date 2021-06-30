@@ -1,0 +1,225 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  font-family: -apple-system, BlinkMacSystemFont, segoe ui, roboto, oxygen,
+    cantarell, helvetica neue, ubuntu, sans-serif;
+  height: 200vh;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+#header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  padding: 20px;
+  position: sticky;
+  top: 0;
+}
+
+.company {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: orange;
+  padding: 0.2em;
+}
+
+#header-img {
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: normal;
+  text-align: center;
+  transition: width 2s;
+  color: black;
+  margin: 5px;
+}
+
+#nav-bar {
+  display: flex;
+  width: 448px;
+  justify-content: space-evenly;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 5px;
+  transition: background-color 0.5s, color 0.5s;
+}
+
+.nav-link:hover {
+  background-color: gray;
+  color: white;
+}
+
+#features {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.feat {
+  display: grid;
+  width: 95%;
+  grid-template-columns: 50px 150px;
+  grid-template-areas:
+    "logo point"
+    "logo expand";
+  column-gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+#logo {
+  grid-area: logo;
+  width: 50px;
+  height: 50px;
+}
+
+#point {
+  grid-area: point;
+  margin: 0;
+  padding: 0;
+  font-weight: bold;
+}
+
+#expand {
+  grid-area: expand;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+#video {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+#pricing {
+  display: grid;
+  grid-template-columns: repeat(3, 300px);
+  grid-template-areas:
+    "head head head"
+    "budget mid high";
+  justify-content: center;
+  text-align: center;
+}
+
+#head {
+  grid-area: head;
+  grid-column: 2/3;
+  justify-self: center;
+}
+
+#budget {
+  grid-area: budget;
+}
+
+#mid {
+  grid-area: mid;
+}
+
+#high {
+  grid-area: high;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  margin: 5px;
+  border: 1px solid black;
+}
+
+#range {
+  background-color: #eee;
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+#price {
+  font-weight: bold;
+  margin: 8px;
+  font-size: 1.4em;
+}
+
+button {
+  padding: 10px 20px 10px 20px;
+  border-radius: 0px;
+  background-color: #800020;
+  border: 0 solid transparent;
+  color: wheat;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: rgb(27, 27, 50);
+}
+
+#select {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.2em;
+}
+
+#form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+input {
+  width: 25%;
+  height: 30px;
+  border: 1px solid black;
+  padding: 5px 0px 5px 15px;
+  background-color: white;
+}
+
+input:focus {
+  outline: 0;
+  border: 1px solid gray;
+}
+
+div br {
+  margin: 5px;
+}
+
+label {
+  margin-top: 10px;
+}
+
+#submit {
+  background-color: #f0c05a;
+  color: black;
+  margin: 10px;
+}
+
+@media screen and (max-width: 700px) {
+  html {
+    font-size: 18px;
+  }
+}

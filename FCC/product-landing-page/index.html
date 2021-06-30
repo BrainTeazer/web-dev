@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head (metadata) -->
+  <head>
+    <meta charset="utf-8" />
+    <title>Product Landing Page</title>
+    <link href="styles/style.css" rel="stylesheet" />
+  </head>
+
+  <header id="header">
+    <div class="company">
+      <img id="header-img" src="/images/bed.png" />
+      <h1 id="title">NailingBed</h1>
+    </div>
+    <nav id="nav-bar">
+      <a href="#features" class="nav-link"> Features</a>
+      <a href="#video" class="nav-link"> How It Works</a>
+      <a href="#pricing" class="nav-link"> Pricing</a>
+      <a href="#start" class="nav-link"> Get Started</a>
+    </nav>
+  </header>
+
+  <main>
+    <body>
+      <section id="features">
+        <h2>Features</h2>
+        <div class="feat">
+          <img src="images/nail.png"" id="logo">
+          <p id="point">Has Nails</p>
+          <p id="expand">Very sharp. 100% pierce guarantee.</p>
+        </div>
+        <div class="feat">
+          <img src="images/dollar-symbol.png"" id="logo">
+          <p id="point">Low Maintenance</p>
+          <p id="expand">
+            What more needs to be said? It's just nails and wood. Pretty easy to
+            maintain.
+          </p>
+        </div>
+        <div class="feat">
+          <img src="images/fun.png"" id="logo">
+          <p id="point">Prickly Fun</p>
+          <p id="expand">Provides some prickly fun. Ahem.</p>
+        </div>
+      </section>
+      <section id="video">
+        <h2>How It Works (Video)</h2>
+        <iframe
+          width="560"
+          height="315"
+          src="https://www.youtube.com/embed/5ewdTyVSDmY"
+          title="YouTube video player"
+          frameborder="0"
+          allow="encrypted-media; gyroscope"
+          allowfullscreen
+        ></iframe>
+      </section>
+      <section id="pricing">
+        <h2 id="head">Pricing</h2>
+        <div id="budget" class="box">
+          <div id="range">Budget</div>
+          <div id="price">$500</div>
+          <div id="info">
+            Lorem ipsum dolor sit. <br />
+            Lorem, ipsum dolor. <br />
+            Lorem ipsum dolor sit amet. <br />
+            Lorem, ipsum. <br />
+          </div>
+          <button id="select">SELECT</button>
+        </div>
+        <div id="mid" class="box">
+          <div id="range">Medium</div>
+          <div id="price">$750</div>
+          <div id="info">
+            Lorem ipsum dolor sit. <br />
+            Lorem, ipsum dolor. <br />
+            Lorem ipsum dolor sit amet. <br />
+            Lorem, ipsum. <br />
+          </div>
+          <button id="select">SELECT</button>
+        </div>
+        <div id="high" class="box">
+          <div id="range">High</div>
+          <div id="price">$1000</div>
+          <div id="info">
+            Lorem ipsum dolor sit. <br />
+            Lorem, ipsum dolor. <br />
+            Lorem ipsum dolor sit amet. <br />
+            Lorem, ipsum. <br />
+          </div>
+          <button id="select">SELECT</button>
+        </div>
+      </section>
+      <section id="start">
+        <form id="form" action="https://www.freecodecamp.com/email-submit">
+          <label for="email"><h2>Get Started</h2></label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email address"
+          />
+          <br />
+          <button type="submit" id="submit" name="submit">Sign Up</button>
+        </form>
+      </section>
+      <script src="scripts/main.js"></script>
+    </body>
+  </main>
+</html>

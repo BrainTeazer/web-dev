@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <!-- Head (metadata) -->
+  <head>
+    <meta charset="utf-8" />
+    <title>Survey Form</title>
+    <link href="styles/style.css" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <!---->
+  <header>
+    <h1 id="title">Random Survey Form</h1>
+    <p id="description">This form does not do anything.</p>
+  </header>
+  <main>
+    <body>
+      <form id="survey-form" action="">
+        <!-- Name Field -->
+        <div class="form-field">
+          <label for="name" id="name-label" class="required"> Name</label>
+          <br />
+          <input
+            type="text"
+            placeholder="Enter your name"
+            name="name"
+            id="name"
+            class="box-form"
+            required
+          />
+          <br />
+        </div>
+
+        <!--  Email Field -->
+        <div class="form-field">
+          <label for="email" id="email-label" class="required"> Email</label>
+          <br />
+          <input
+            type="email"
+            placeholder="Enter your email"
+            name="email"
+            id="email"
+            class="box-form"
+            required
+          />
+          <p>Please enter a valid email address</p>
+          <br />
+        </div>
+
+        <!-- Age Field -->
+        <div class="form-field">
+          <label for="number" id="number-label" class="optional"> Age </label>
+          <br />
+          <input
+            type="number"
+            placeholder="Enter your age (13-120)"
+            id="number"
+            class="box-form"
+            min="13"
+            max="120"
+          />
+          <br />
+        </div>
+
+        <!-- Dropdown Field -->
+        <div class="form-field">
+          <label for="dropdown" class="required">
+            What is your favourite season?</label
+          >
+          <br />
+          <select id="dropdown" name="fav-season" class="box-form" required>
+            <option value="" disabled selected>
+              Choose your favourite season
+            </option>
+            <option value="summer">Summer</option>
+            <option value="winter">Winter</option>
+            <option value="autumn">Autumn</option>
+            <option value="Spring">Spring</option>
+          </select>
+          <br />
+        </div>
+
+        <!-- Radio Button Field -->
+        <div class="form-field radio">
+          <label for="feeling"> How are you feeling? </label> <br />
+          <label for="happy">
+            <input
+              type="radio"
+              name="feeling"
+              value="happy"
+              id="happy"
+              required
+            />
+            Happy </label
+          ><br />
+          <label for="mid">
+            <input type="radio" name="feeling" value="mid" id="mid" required />
+            Mid </label
+          ><br />
+          <label for="sad">
+            <input
+              type="radio"
+              name="feeling"
+              value="sad"
+              id="sad"
+              checked
+              required
+            />
+            Sad
+          </label>
+          <br />
+        </div>
+
+        <!-- Checkbox Field -->
+        <div class="form-field">
+          <label for="animal" id="checkbox">
+            What domestic animals do you like? </label
+          ><br />
+          <label for="dog">
+            <input type="checkbox" value="dog" name="animal" id="animal dog" />
+            Dog </label
+          ><br />
+          <label for="cat">
+            <input type="checkbox" value="cat" name="animal" id="animal cat" />
+            Cat </label
+          ><br />
+          <label for="rabbit">
+            <input
+              type="checkbox"
+              value="rabb"
+              name="animal"
+              id="animal rabbit"
+            />
+            Rabbit </label
+          ><br />
+          <label for="hamster">
+            <input
+              type="checkbox"
+              value="hamster"
+              name="animal"
+              id="animal hamster"
+            />
+            Hamster </label
+          ><br />
+          <label for="parrot">
+            <input
+              type="checkbox"
+              value="parrot"
+              name="animal"
+              id="animal parrot"
+            />
+            Parrot
+          </label>
+          <br />
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" id="submit">Submit</button>
+      </form>
+      <script src="scripts/main.js"></script>
+    </body>
+  </main>
+</html>

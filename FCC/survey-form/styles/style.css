@@ -1,0 +1,130 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Open Sans", "Lucida Grande", sans-serif;
+  font-size: 14px;
+  box-sizing: border-box;
+  background-color: #eee;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+:root {
+  --input-padding: 8px;
+  --form-padding: calc(3 * var(--input-padding));
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(140, 91, 255, 0.5);
+  padding-top: 5px;
+  height: 150px;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+}
+
+form {
+  position: absolute;
+  top: 20%;
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  height: auto;
+  padding: 15px;
+  background-color: beige;
+}
+
+input,
+select {
+  margin: 0;
+  padding: 0;
+  margin-top: var(--input-padding);
+}
+
+label {
+  font-size: 1.3rem;
+  font-style: bold;
+}
+
+.box-form {
+  font-size: 1.2em;
+  padding: 0;
+  width: 100%;
+  height: 35px;
+  border-radius: 5px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+#dropdown {
+  padding: 0px 10px 0px 10px;
+}
+
+.form-field {
+  margin-bottom: var(--form-padding);
+}
+
+#submit {
+  width: 20%;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  height: 30px;
+  background-color: whitesmoke;
+}
+
+#submit:hover {
+  border: 1px solid black;
+  background-color: azure;
+}
+
+input + p {
+  position: absolute;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+}
+
+input.invalid + p {
+  color: orange;
+  position: relative;
+  opacity: 1;
+  margin: 5px 0 -20px 0;
+}
+
+input:focus {
+  outline: 0;
+  border: 1px solid gray;
+}
+
+input.invalid:focus {
+  outline: 0;
+  border: 1px solid lightcoral;
+}
+
+.required::after {
+  content: "*";
+}
+
+form label.optional::after {
+  content: "(optional)";
+  font-size: 0.9em;
+}
+
+#checkbox::after {
+  content: "(Check all that apply)";
+  font-size: 0.9em;
+}
