@@ -36,6 +36,7 @@ body {
   height: 40px;
   margin: 0;
   padding: 0;
+  display: hidden !important;
 }
 
 h1 {
@@ -218,8 +219,26 @@ label {
   margin: 10px;
 }
 
-@media screen and (max-width: 700px) {
-  html {
-    font-size: 18px;
+@media only screen and (max-width: 700px) {
+  html,
+  body {
+    font-size: 0.8rem;
+  }
+  #header {
+    flex-direction: column;
+  }
+  .container {
+    display: hidden;
+  }
+  #nav-bar {
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 1rem;
+  }
+  #pricing {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
   }
 }
