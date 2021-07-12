@@ -1,68 +1,80 @@
-html {
+html,
+body {
   font-family: monospace;
   font-size: 14px;
+  background-color: #3c1b43;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 h1 {
   text-align: center;
-  background-color: lightpink;
+  color: #ffdb58;
   padding: 1em;
+}
+
+h3,
+h4 {
+  color: #fce694;
 }
 
 #options {
   text-align: center;
+  margin-bottom: 50px;
+}
+
+#optionHead {
+  color: #fce694;
 }
 
 button {
   font-size: 1.3em;
-  border-radius: 3px;
   border: 1px solid black;
+  color: black;
+  background-color: rgb(196, 127, 0);
   padding: 8px;
   margin: 5px;
-  height: 3em;
+  height: auto;
   width: 5em;
+  transition: all 0.07s;
 }
 
-#test {
+button:hover {
+  transform: scale(1.1);
+  border: 1px solid yellow;
+  background-color: orange;
+}
+
+#currentScore {
   white-space: pre;
-  background-color: lightgoldenrodyellow;
-  width: 250px;
+  color: white;
+  width: auto;
   padding: 15px;
-  align-self: flex-start;
+  align-self: center;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 #history {
-  background-color: white;
   overflow-y: auto;
+  color: white;
   width: auto;
-  height: 500px;
+  height: 200px;
   border: 1px solid gray;
 }
 
 #result {
   width: 350px;
-  margin: 0px;
-  padding: 0px;
-  border: 1px solid lightcyan;
+  text-align: center;
 }
 
-button:hover {
-  transform: scale(1.1);
-}
-
-#rock {
-  background-color: lightcoral;
-}
-
-#paper {
-  background-color: lightblue;
-}
-
-#scissors {
-  background-color: lightgreen;
-}
-
-#results {
+#information {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
 }
