@@ -1,0 +1,68 @@
+html {
+  font-family: monospace;
+  font-size: 14px;
+}
+
+h1 {
+  text-align: center;
+  background-color: lightpink;
+  padding: 1em;
+}
+
+#options {
+  text-align: center;
+}
+
+button {
+  font-size: 1.3em;
+  border-radius: 3px;
+  border: 1px solid black;
+  padding: 8px;
+  margin: 5px;
+  height: 3em;
+  width: 5em;
+}
+
+#test {
+  white-space: pre;
+  background-color: lightgoldenrodyellow;
+  width: 250px;
+  padding: 15px;
+  align-self: flex-start;
+}
+
+#history {
+  background-color: white;
+  overflow-y: auto;
+  width: auto;
+  height: 500px;
+  border: 1px solid gray;
+}
+
+#result {
+  width: 350px;
+  margin: 0px;
+  padding: 0px;
+  border: 1px solid lightcyan;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+#rock {
+  background-color: lightcoral;
+}
+
+#paper {
+  background-color: lightblue;
+}
+
+#scissors {
+  background-color: lightgreen;
+}
+
+#results {
+  display: flex;
+  justify-content: space-between;
+}
