@@ -1,95 +1,191 @@
-// let boxesPerSide;
-
 let containerDiv = document.createElement("div");
-let containerDivDimension = 960;
 containerDiv.className = "container";
 document.body.appendChild(containerDiv);
 
-let heading = document.querySelector("h1");
-let size = document.createElement("div");
-heading.appendChild(size);
+const pickColour = document.querySelector("#color-picker");
+pickColour.addEventListener("change", colorPick);
+let allOptions = document.querySelectorAll(".option");
+let fillBtn = document.getElementById("fill");
+let darkenBtn = document.getElementById("darken");
 
-function gridOfSquares(boxesPerSide = 32) {
+let fill = false;
+let darken = false;
+let colorPicker = true;
+let boxesPerSide = 32;
+
+//Prevents dragging of container.
+containerDiv.ondragstart = () => {
+  return false;
+};
+
+fillBtn.addEventListener("click", (e) => {
+  if (!fill) {
+    fill = true;
+    fillBtn.classList.add("selected");
+  } else {
+    fill = false;
+    fillBtn.classList.remove("selected");
+  }
+});
+
+darkenBtn.addEventListener("click", (e) => {
+  if (!darken) {
+    darken = true;
+    darkenBtn.classList.add("selected");
+  } else {
+    darken = false;
+    darkenBtn.classList.remove("selected");
+  }
+});
+
+function hextorgba(hex) {
+  let match = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+  if (!match) {
+    return null;
+  } else {
+    return `${parseInt(match[1], 16)}, ${parseInt(match[2], 16)}, ${parseInt(match[3], 16)}`;
+  }
+}
+
+let bg = 0;
+
+function drawClickHover(e) {
+  //checks if a button is being pressed
+  if (e.buttons > 0) {
+    if (fill) {
+      switch (true) {
+        case colorPicker === true:
+          for (i = 0; i < containerDiv.children.length; i++) {
+            containerDiv.children[i].style.backgroundColor = `${pickColour.value}`;
+          }
+          break;
+        case eraser === true:
+          for (i = 0; i < containerDiv.children.length; i++) {
+            containerDiv.children[i].style.backgroundColor = "";
+          }
+          break;
+        case rainbow === true:
+          for (i = 0; i < containerDiv.children.length; i++) {
+            containerDiv.children[i].style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+          }
+          break;
+        default:
+          for (i = 0; i < containerDiv.children.length; i++) {
+            containerDiv.children[i].style.backgroundColor = `${pickColour.value}`;
+          }
+      }
+    } else {
+      switch (true) {
+        case colorPicker === true:
+          if (darken) {
+            if (e.target.style.backgroundColor.slice(0, 4) === "rgba") {
+              let opacity = Number(e.target.style.backgroundColor.slice(-4, -1));
+              e.target.style.backgroundColor = `rgba(${hextorgba(pickColour.value)}, ${(opacity += 0.1)})`;
+            } else {
+              e.target.style.backgroundColor = `rgba(${hextorgba(pickColour.value)}, 0.1)`;
+            }
+          } else {
+            e.target.style.backgroundColor = `${pickColour.value}`;
+          }
+          break;
+        case eraser === true:
+          e.target.style.backgroundColor = "";
+          break;
+        case rainbow === true:
+          e.target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
+          console.log(e.target.style.backgroundColor);
+          break;
+        default:
+          e.target.style.backgroundColor = `${pickColour.value}`;
+      }
+    }
+  }
+}
+
+function gridOfSquares() {
   containerDiv.innerHTML = "";
-  size.textContent = `(Current size: ${boxesPerSide} x ${boxesPerSide})`;
+  containerDiv.setAttribute("style", `display: grid; grid-template-columns: repeat(${boxesPerSide}, 1fr); border: 3px solid black`);
+
   for (i = 1; i <= boxesPerSide ** 2; i++) {
-    containerDiv.setAttribute("style", `display: grid; width: ${containerDivDimension}px; height: ${containerDivDimension}px; grid-template-columns: repeat(${boxesPerSide}, ${containerDivDimension / boxesPerSide}px); border: 3px solid black`);
     let box = document.createElement("div");
     box.className = "box";
     containerDiv.appendChild(box);
+  }
+
+  let allBoxes = document.querySelectorAll(".box");
+  for (i = 0; i < allBoxes.length; i++) {
+    allBoxes[i].addEventListener("mousedown", drawClickHover);
+    allBoxes[i].addEventListener("mouseover", drawClickHover);
   }
 }
 
 gridOfSquares();
 
+function userChoice() {
+  let newSize = prompt("enter a value:");
+
+  if (!newSize) {
+    return;
+  }
+
+  while (newSize < 1 || newSize > 64) {
+    newSize = prompt("invalid");
+  }
+
+  boxesPerSide = parseInt(newSize);
+  gridOfSquares();
+}
+
+document.getElementById("size").addEventListener("click", userChoice);
+
 let allBoxes = document.querySelectorAll(".box");
-
-function blackOption() {
-  allBoxes.forEach((box) => {
-    box.addEventListener("mouseover", (e) => {
-      e.target.setAttribute("style", "background-color: black");
-    });
-  });
-}
-
-function eraser() {
-  allBoxes.forEach((box) => {
-    box.addEventListener("mouseover", (e) => {
-      e.target.setAttribute("style", `background-color:${document.body.style.backgroundColor}`);
-    });
-  });
-}
-
-function rainbow() {
-  allBoxes.forEach((box) => {
-    box.addEventListener("mouseover", (e) => {
-      e.target.style.backgroundColor = `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-    });
-  });
-}
-
-// function grayscale() {
-//   allBoxes.forEach((box) => {
-//     box.addEventListener("mouseover", (e) => {
-//       console.log(e.target);
-//       e.target.setAttribute("style", `background-color: red; opacity: ${(i += 0.1)}`);
-//     });
-//   });
-// }
-
-blackOption();
 
 let clearAll = document.querySelector("#clearAll").addEventListener("click", () => {
   allBoxes.forEach((box) => {
-    box.setAttribute("style", `background-color:${document.body.style.backgroundColor}`);
+    box.style.backgroundColor = "";
   });
 });
 
-let button = document.querySelector("button");
-let buttonStyle = getComputedStyle(button);
+allOptions.forEach((anOption) => {
+  anOption.addEventListener("click", (e) => {
+    document.querySelector("#label").classList.remove("selected");
 
-let allOptions = document.querySelectorAll(".option");
-allOptions.forEach((option) => {
-  option.addEventListener("click", (e) => {
     for (i = 0; i < allOptions.length; i++) {
-      allOptions[i].setAttribute("style", "border: 1px solid black; background-color:white; color: black; font-weight: normal");
+      allOptions[i].classList.remove("selected");
     }
-    e.target.setAttribute("style", "border: 1px solid black; background-color: rgba(0,0,0,0.7); color: white; font-weight: bold");
+
+    e.target.classList.add("selected");
+
     switch (e.target.id) {
-      case "black":
-        blackOption();
+      case "color-picker":
+        document.querySelector("#label").classList.add("selected");
+        colorPicker = true;
+        rainbow = false;
+        eraser = false;
         break;
-      case "rainbow":
-        rainbow();
+
+      case "rainbow-btn":
+        rainbow = true;
+        eraser = false;
+        colorPicker = false;
         break;
-      case "eraser":
-        eraser();
+
+      case "eraser-btn":
+        rainbow = false;
+        eraser = true;
+        colorPicker = false;
         break;
-      // case ("grayscale"):
-      //   grayscale();
-      //   break;
+
       default:
-        blackOption();
+        rainbow = false;
+        eraser = false;
+        colorPicker = true;
     }
   });
 });
+
+function colorPick(e) {
+  let newColour = e.target.value;
+  colorPicker = true;
+  return newColour;
+}
