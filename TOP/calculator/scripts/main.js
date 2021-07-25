@@ -9,6 +9,8 @@ let isNum1 = true; //checks whether the number being inputted is the first one
 let negative = 0; //checks whether negative sign is pressed after pressing multiply or divide
 let nextSide = 0; //checks whether to clear the display for the next number after pressing operator
 
+const display = document.querySelector("#display");
+
 function greaterThanTen() {
   if (display.textContent.length > 10) {
     display.textContent = display.textContent.slice(0, -1);
@@ -112,7 +114,6 @@ function equalOf() {
     num2 = "";
   }
 }
-
 let tmpdisp = "";
 
 function changeSign() {
@@ -123,19 +124,18 @@ function changeSign() {
       num2 = `-${num2}`;
     }
     if (display.textContent.length === 10) {
-      tmpdisp = `${display.textContent}`.slice(-1);
+      tmpdisp = `${display.textContent}`.slice(-1); //stores number that is replaced by the '-' to be readded if sign is changed again
       display.textContent = `-${display.textContent}`.slice(0, 10);
     } else {
       display.textContent = `-${display.textContent}`;
     }
   } else if (Number(display.textContent < 0)) {
     if (isNum1) {
-      num1 = `${num1.substring(1)}`;
+      num1 = `${num1.toString().substring(1)}`;
     } else {
-      num2 = `${num2.substring(1)}`;
+      num2 = `${num2.toString().substring(1)}`;
     }
     if (display.textContent.length === 10) {
-      console.log(tmpdisp);
       display.textContent = display.textContent.substring(1) + tmpdisp;
     } else {
       display.textContent = `${display.textContent.substring(1)}`;
@@ -157,7 +157,9 @@ function clearAll() {
 function erase() {
   display.textContent = display.textContent.slice(0, -1);
   if ((isNum1 && operator != "") || isNum1) {
-    num1 = num1.slice(0, -1);
+    num1 = num1.toString().slice(0, -1);
+    operatorCheck = 0;
+    nextSide = 0; // Makes sure that on clicking number it doesn't clear display and act as if you are entering num2
   } else if (num2 === "" && operator != "") {
     operator = "";
     operatorCheck = 0;
@@ -165,7 +167,6 @@ function erase() {
     num2 = num2.slice(0, -1);
   }
 }
-const display = document.querySelector("#display");
 
 //For the AC button
 const clear = document.querySelector("#clear");
@@ -195,30 +196,33 @@ plusMinus.addEventListener("click", (e) => {
 const buttons = document.querySelectorAll(".buttons");
 buttons.forEach((button) => {
   button.addEventListener("click", (e) => {
+    //If '.' has already been pressed, another one is not allowed
+    if (display.textContent.indexOf(".") > -1 && e.target.textContent === ".") {
+      return false;
+    }
+
     //If an operator has been clicked then input will be stored in num2 else num1.
     if (operatorCheck > 0) {
-      if (display.textContent.indexOf(".") > -1 && e.target.textContent === ".") {
-        num2 = num2;
-      } else {
-        num2 += e.target.textContent;
-      }
+      num2 += e.target.textContent;
       isNum1 = false;
     } else if (operatorCheck === 0) {
-      if (display.textContent.indexOf(".") > -1 && e.target.textContent === ".") {
-        num1 = num1;
-      } else {
-        num1 += e.target.textContent;
-      }
+      num1 += e.target.textContent;
       isNum1 = true;
     }
 
     if (display.textContent === "0") {
+      //
       //if 0 is the ONLY number on the display
+      //
       display.textContent = e.target.textContent;
+      //
       //if there is already a '.' then do not allow another one
+      //
     } else if (display.textContent.indexOf(".") > -1 && e.target.textContent === ".") {
       display.textContent += "";
+      //
       //if after operator is already clicked, a number is pressed it will clear the display and begin showing the second number
+      //
     } else if (nextSide > 0) {
       if (negative > 0) {
         display.textContent = `-${e.target.textContent}`;
@@ -230,6 +234,7 @@ buttons.forEach((button) => {
     } else {
       display.textContent += e.target.textContent;
     }
+
     greaterThanTen();
   });
 });
@@ -239,22 +244,37 @@ const operators = document.querySelectorAll(".operator");
 operators.forEach((mathOperator) => {
   mathOperator.addEventListener("click", (e) => {
     if (e.target.textContent === "%") {
+      //
       // Checks if the button clicked is %.
+      //
       percent();
-    } else if (num1 === "" && e.target.textContent === "-") {
+    } else if ((num1 === "" || (num2 === "" && operator != "")) && e.target.textContent === "-") {
+      //
+      //if num1 is empty OR num2 is empty AND an operator has already been pressed, then pressing substract (minus) is to make said number negative
+      //
       display.textContent = "-";
-      num1 = "-";
-    } else if (num2 === "" && operator != "" && e.target.textContent === "-") {
-      display.textContent = "-";
-      num2 = "-";
-      negative = 1;
+
+      if (num1 === "") {
+        num1 = "-";
+      } else {
+        num2 = "-";
+        negative = 1;
+      }
     } else if (operatorCheck === 0) {
+      //
+      //checks if a operator has been pressed once, if not changes operatorCheck to 1 (operator has been pressed) and also indicates that nextSide (or second number) should begin.
+      //
       operator = e.target.textContent;
       operatorCheck = 1;
       nextSide = 1;
     } else {
+      //
       //if an operator has already been pressed before (for chain calculations)
+      //
       if (num2 === "") {
+        //
+        //if num2 is empty, an operator has been pressed already and minus is pressed then num2 becomes negative
+        //
         if (e.target.textContent === "-") {
           display.textContent = "-";
           num2 = "-";
@@ -268,6 +288,7 @@ operators.forEach((mathOperator) => {
         display.textContent = `${result}`;
         num1 = result;
         num2 = "";
+        isNum1 = true;
         nextSide = 1;
       }
     }
@@ -347,18 +368,7 @@ operators.forEach((mathOperator) => {
       }
     }
     getOperator();
-  } else if (e.key === "Enter") {
-    console.log(num1);
-    console.log(num2);
-    if (num1 != "" && num2 != "") {
-      operate(operator, Number(num1), Number(num2));
-      isNum1 = true;
-      console.log(result);
-      display.textContent = `${result}`;
-      num1 = result;
-      num2 = "";
-    } else {
-      return false;
-    }
+  } else if (e.key === "Enter" || e.key === "=") {
+    equalOf();
   }
 }); */
