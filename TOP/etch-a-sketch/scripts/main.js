@@ -87,9 +87,7 @@ lightenBtn.addEventListener("click", (e) => {
   }
 });
 
-function randomColor() {
-  return `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
-}
+const randomColor = () => `rgb(${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)}, ${Math.floor(Math.random() * 256)})`;
 
 function drawClickHover(e) {
   //checks if a button is being pressed
