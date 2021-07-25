@@ -216,11 +216,6 @@ buttons.forEach((button) => {
       //
       display.textContent = e.target.textContent;
       //
-      //if there is already a '.' then do not allow another one
-      //
-    } else if (display.textContent.indexOf(".") > -1 && e.target.textContent === ".") {
-      display.textContent += "";
-      //
       //if after operator is already clicked, a number is pressed it will clear the display and begin showing the second number
       //
     } else if (nextSide > 0) {
@@ -295,7 +290,8 @@ operators.forEach((mathOperator) => {
   });
 });
 
-/* window.addEventListener("keydown", (e) => {
+//Everything below here is just a copy paste of everything inside operators.forEach and buttons.forEach
+window.addEventListener("keydown", (e) => {
   function getOperator() {
     if (e.key === "*") {
       operator = "×";
@@ -304,71 +300,78 @@ operators.forEach((mathOperator) => {
     } else {
       operator = e.key;
     }
-  }
-
-  if (display.textContent.length === 10) {
-    return false;
+    return operator;
   }
 
   if (e.key === "Backspace") {
     erase();
   }
 
+  if (display.textContent.length === 10) {
+    return false;
+  }
+
+  if (display.textContent.indexOf(".") > -1 && e.key === ".") {
+    return false;
+  }
+
   if (allNumbers.test(e.key) && !e.key.includes("F")) {
+    if (operatorCheck > 0) {
+      num2 += e.key;
+      isNum1 = false;
+    } else if (operatorCheck === 0) {
+      num1 += e.key;
+      isNum1 = true;
+    }
+
     if (display.textContent === "0") {
       display.textContent = e.key;
-    } else if (display.textContent.indexOf(".") > -1 && e.key === ".") {
-      display.textContent += "";
     } else if (nextSide > 0) {
-      display.textContent = e.key;
+      if (negative > 0) {
+        display.textContent = `-${e.key}`;
+        negative = 0;
+      } else {
+        display.textContent = e.key;
+      }
       nextSide = 0;
     } else {
       display.textContent += e.key;
     }
-    if (isNum1) {
-      if (display.textContent.indexOf(".") > -1 && e.key === ".") {
-        num1 += "";
-      } else {
-        num1 += e.key;
-      }
-    } else {
-      if (display.textContent.indexOf(".") > -1 && e.key === ".") {
-        num2 += "";
-      } else {
-        num2 += e.key;
-      }
-    }
-    // console.log(num1);
-    console.log(num2);
   } else if (e.key === "%") {
     percent();
   } else if (allOperators.test(e.key)) {
-    isNum1 = false;
-
-    if (operatorCheck === 0) {
+    if ((num1 === "" || (num2 === "" && operator != "")) && e.key === "-") {
+      display.textContent = "-";
+      if (num1 === "") {
+        num1 = "-";
+      } else {
+        num2 = "-";
+        negative = 1;
+      }
+    } else if (operatorCheck === 0) {
+      operator = getOperator();
       operatorCheck = 1;
       nextSide = 1;
     } else {
-      //if an operator has already been pressed before (for chain calculations)
       if (num2 === "") {
-        if (e.target.textContent === "-") {
+        if (e.key === "-") {
           display.textContent = "-";
           num2 = "-";
           negative = 1;
         } else {
-          getOperator();
+          operator = getOperator();
         }
       } else {
         operate(operator, Number(num1), Number(num2));
-        getOperator();
+        operator = getOperator();
         display.textContent = `${result}`;
         num1 = result;
         num2 = "";
+        isNum1 = true;
         nextSide = 1;
       }
     }
-    getOperator();
   } else if (e.key === "Enter" || e.key === "=") {
     equalOf();
   }
-}); */
+});
