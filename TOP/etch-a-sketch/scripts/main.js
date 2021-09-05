@@ -191,9 +191,8 @@ function userChoice() {
 
 document.getElementById("size").addEventListener("click", userChoice);
 
-let allBoxes = document.querySelectorAll(".box");
-
 let clearAll = document.querySelector("#clearAll").addEventListener("click", () => {
+  let allBoxes = document.querySelectorAll(".box");
   allBoxes.forEach((box) => {
     box.style.backgroundColor = "";
   });
